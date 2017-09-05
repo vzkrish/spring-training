@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="mail" class="com.demo.spring.Mail" scope="prototype"
+		init-method="init" destroy-method="cleanup">
+		<property name="fromAddress" value="trainer" />
+		<property name="toAddress" ref="addrs">
+			
+		</property>
+		<property name="message">
+			<bean class="com.demo.spring.Message">
+				<constructor-arg value="Lunch Break" />
+				<constructor-arg value="Lunch is at 1:00pm" />
+			</bean>
+		</property>
+	</bean>
+
+	<util:list id="addrs" list-class="java.util.ArrayList"
+		value-type="java.lang.String">
+		<value>raju</value>
+		<value>Pavan</value>
+		<value>Arjun</value>
+		<value>Kirthi</value>
+	</util:list>
+	<!-- <bean id="msg" class="com.demo.spring.Message"> <constructor-arg value="Lunch 
+		Break"/> <constructor-arg value="Lunch is at 1:00pm" /> </bean> -->
+</beans>
